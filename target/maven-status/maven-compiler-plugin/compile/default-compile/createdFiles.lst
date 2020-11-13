@@ -1,0 +1,6 @@
+com\github\idouzi\util\sign\SignUtil.class
+com\github\idouzi\util\APIHttpClient.class
+com\github\idouzi\sdk\TdbClient.class
+com\github\idouzi\util\md5\MD5Encrypt.class
+com\github\idouzi\util\RpcUtil.class
+com\github\idouzi\util\UuidUtils.class
