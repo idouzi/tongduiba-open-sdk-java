@@ -6,6 +6,7 @@ import com.github.idouzi.util.UuidUtils;
 import com.github.idouzi.util.sign.SignUtil;
 import org.springframework.stereotype.Component;
 
+import java.net.URLEncoder;
 import java.util.*;
 @Component
 public class TdbClient {
@@ -44,7 +45,11 @@ public class TdbClient {
         Set<String> keySet = params.keySet();
         //拼接字符串
         for (String key : keySet) {
-            url.append(key).append("=").append(params.get(key)).append("&");
+            if (key.equals("redirect")&&!params.get(key).toString().isEmpty()){
+                url.append(key).append("=").append(URLEncoder.encode(params.get(key).toString())).append("&");
+            }else {
+                url.append(key).append("=").append(params.get(key)).append("&");
+            }
         }
         String string = url.toString();
         if (string.endsWith("&")) {
@@ -89,7 +94,7 @@ public class TdbClient {
         Set<String> keySet = params.keySet();
         //拼接字符串
         for (String key : keySet) {
-            url.append(key).append("=").append(params.get(key)).append("&");
+                url.append(key).append("=").append(params.get(key)).append("&");
         }
         String string = url.toString();
         if (string.endsWith("&")) {
