@@ -32,7 +32,8 @@ public class SignUtil {
         Set<Map.Entry<String, Object>> entrySet = sortParams.entrySet();
         //拼接字符串
         for (Map.Entry<String, Object> entry : entrySet) {
-            valueSb.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+            String s=new String(entry.getValue().toString().getBytes(),"utf-8");
+            valueSb.append(entry.getKey()).append("=").append(s).append("&");
         }
         valueSb.append("appSecret=" + appSecret);
         return new MD5Encrypt().md5(valueSb.toString());
