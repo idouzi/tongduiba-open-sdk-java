@@ -62,9 +62,11 @@ public class testClient {
         params.put("openId", "");
         params.put("source", "app");
 
-        Map<String,String> search = new HashMap<>();
+        Map search = new HashMap();
         search.put("orderId","pay_1974_21041322124262556396299");
-        params.put("search", search);
+
+
+        params.put("search",search);
         params.put("redirect", "https://www.baidu.com?a=1&b=2&c=你好");
         String autoLogin = tdbClient.getUrl("/v1/user/login/auto-login", params);
         System.out.println(autoLogin);

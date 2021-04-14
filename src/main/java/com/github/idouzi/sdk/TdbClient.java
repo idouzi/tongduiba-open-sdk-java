@@ -48,7 +48,15 @@ public class TdbClient {
             if (key.equals("redirect")&&!params.get(key).toString().isEmpty()){
                 url.append(key).append("=").append(URLEncoder.encode(params.get(key).toString())).append("&");
             }else {
-                url.append(key).append("=").append(params.get(key)).append("&");
+                if (params.get(key) instanceof Map){
+                    Set<Map.Entry<String, Object>> entrySet = ((Map)params.get(key)).entrySet();
+                    for (Map.Entry<String, Object> entry : entrySet) {
+                        url.append(key).append("[").append(entry.getKey()).append("]").append("=").append(entry.getValue()).append("&");
+                    }
+                }else {
+                    url.append(key).append("=").append(params.get(key)).append("&");
+                }
+
             }
         }
         String string = url.toString();
