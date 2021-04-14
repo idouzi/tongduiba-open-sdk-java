@@ -40,7 +40,6 @@ public class SignUtil {
             }else {
                 s = new String(entry.getValue().toString().getBytes(),"utf-8");
             }
-
             valueSb.append(entry.getKey()).append("=").append(s).append("&");
         }
         valueSb.append("appSecret=" + appSecret);
