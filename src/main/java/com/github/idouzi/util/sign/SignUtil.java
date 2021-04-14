@@ -1,9 +1,11 @@
 package com.github.idouzi.util.sign;
 
 
+import com.alibaba.fastjson.JSON;
 import com.github.idouzi.util.md5.MD5Encrypt;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -32,9 +34,20 @@ public class SignUtil {
         Set<Map.Entry<String, Object>> entrySet = sortParams.entrySet();
         //拼接字符串
         for (Map.Entry<String, Object> entry : entrySet) {
-            valueSb.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+            String s = "";
+            if (entry.getValue().getClass().isArray()||entry.getValue() instanceof List||entry.getValue() instanceof Map){
+                s = new String(JSON.toJSONString(entry.getValue()).getBytes(),"utf-8");
+            }else {
+                s = new String(entry.getValue().toString().getBytes(),"utf-8");
+            }
+
+            valueSb.append(entry.getKey()).append("=").append(s).append("&");
         }
         valueSb.append("appSecret=" + appSecret);
+        System.out.println(valueSb);
         return new MD5Encrypt().md5(valueSb.toString());
     }
+
+
+
 }

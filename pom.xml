@@ -6,7 +6,7 @@
 
     <groupId>com.github.idouzi</groupId>
     <artifactId>server</artifactId>
-    <version>1.0-RELEASE</version>
+    <version>1.4-RELEASE</version>
     <packaging>jar</packaging>
 
     <parent>
